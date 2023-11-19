@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Signing Playground</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section>
+    <h2>IPA Section</h2>
+    <input type="file" id="ipaFile" accept=".ipa">
+  </section>
+
+  <section>
+    <h2>P12 Section</h2>
+    <input type="file" id="p12File" accept=".p12">
+    <label for="p12Password">P12 Password:</label>
+    <input type="password" id="p12Password">
+  </section>
+
+  <section>
+    <h2>Mobile Provision Section</h2>
+    <input type="file" id="mobileProvisionFile" accept=".mobileprovision">
+  </section>
+
+  <button onclick="signFiles()">Sign Files</button>
+
+  <!-- Notification area -->
+  <div id="notification"></div>
+
+  <!-- Display the download link -->
+  <div id="downloadLink" style="display: none;">
+    <a id="installLink" href="#">Install Your App</a>
+  </div>
+
+  <!-- Install button -->
+  <button id="installButton" style="display: none;" onclick="alert('Installing your app...')">Install</button>
+
+  <script src="signing.js"></script>
+</body>
+</html>
