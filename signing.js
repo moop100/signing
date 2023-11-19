@@ -11,8 +11,9 @@ function signFiles() {
   }
 
   // Assume signing is successful
-  const signedIpaLink = generateSignedIpaLink();
-  const plistLink = generatePlistLink(signedIpaLink);
+  const randomName = generateRandomName();
+  const signedIpaLink = generateSignedIpaLink(randomName);
+  const plistLink = generatePlistLink(randomName);
 
   // Display the download link
   const downloadLink = document.getElementById('downloadLink');
@@ -30,14 +31,19 @@ function signFiles() {
   alert('Files signed successfully! You can now install your app.');
 }
 
-function generateSignedIpaLink() {
-  // Add logic to generate the link to your signed IPA file
-  // For example: return 'https://your-server.com/your-app-signed.ipa';
+function generateRandomName() {
+  // Generate a random name for the signed IPA file
+  return `your-app-${Math.random().toString(36).substring(7)}.ipa`;
+}
+
+function generateSignedIpaLink(randomName) {
+  // Add logic to generate the link to your GitHub release page with the random name
+  // Example: return `https://github.com/moop100/signing/releases/download/signed/${randomName}`;
   return '#'; // Update this with the actual link
 }
 
-function generatePlistLink(signedIpaLink) {
-  // Add logic to generate the link to your plist file with the signed IPA link
-  // For example: return 'https://your-server.com/your-app.plist';
+function generatePlistLink(randomName) {
+  // Add logic to generate the link to your GitHub Pages plist file with the random name
+  // Example: return `https://moop100.github.io/signing/${randomName}.plist`;
   return '#'; // Update this with the actual link
 }
