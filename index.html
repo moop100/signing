@@ -3,39 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Signing Playground</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>IPA Signing</title>
 </head>
 <body>
-  <section>
-    <h2>IPA Section</h2>
-    <input type="file" id="ipaFile" accept=".ipa">
-  </section>
 
-  <section>
-    <h2>P12 Section</h2>
-    <input type="file" id="p12File" accept=".p12">
-    <label for="p12Password">P12 Password:</label>
-    <input type="password" id="p12Password">
-  </section>
+  <h1>IPA Signing</h1>
 
-  <section>
-    <h2>Mobile Provision Section</h2>
-    <input type="file" id="mobileProvisionFile" accept=".mobileprovision">
-  </section>
+  <!-- Input fields for IPA, P12, and Mobile Provision files -->
+  <input type="file" id="ipaFile" accept=".ipa" />
+  <br />
+  <input type="file" id="p12File" accept=".p12" />
+  <br />
+  <input type="file" id="mobileProvisionFile" accept=".mobileprovision" />
+  <br />
 
+  <!-- Input field for P12 password -->
+  <input type="password" id="p12Password" placeholder="P12 Password" />
+  <br />
+
+  <!-- Sign Files button -->
   <button onclick="signFiles()">Sign Files</button>
 
-  <!-- Notification area -->
-  <div id="notification"></div>
-
-  <!-- Display the download link -->
-  <div id="downloadLink" style="display: none;">
-    <a id="installLink" href="#">Install Your App</a>
-  </div>
-
-  <!-- Install button -->
-  <button id="installButton" style="display: none;" onclick="alert('Installing your app...')">Install</button>
+  <!-- Display download link and install button -->
+  <a id="downloadLink" href="#" style="display: none;">Download Signed IPA</a>
+  <button id="installButton" style="display: none;">Install App</button>
 
   <script src="signing.js"></script>
 </body>
