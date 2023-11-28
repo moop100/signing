@@ -3,31 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPA Signing</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+    }
+
+    h3 {
+      text-align: center;
+      color: #FF0000;
+    }
+
+    #title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .custom-file-upload {
+      cursor: pointer;
+      color: #3498db;
+      text-decoration: underline;
+    }
+
+    input[type="submit"] {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      width: 100%;
+      font-size: 1.2em;
+    }
+
+    .error {
+      color: #FF0000;
+      text-align: center;
+    }
+
+    #loadingIndicator {
+      display: none; /* Assuming you have this element defined in your HTML */
+    }
+  </style>
 </head>
 <body>
 
-  <h1>IPA Signing</h1>
+  <form method="post" action="https://api.casp.dev/upload.php" enctype="multipart/form-data" id="uploadForm" name="uploadForm">
+    <h1>Moop Signer</h1>
 
-  <!-- Input fields for IPA, P12, and Mobile Provision files -->
-  <input type="file" id="ipaFile" accept=".ipa" />
-  <br />
-  <input type="file" id="p12File" accept=".p12" />
-  <br />
-  <input type="file" id="mobileProvisionFile" accept=".mobileprovision" />
-  <br />
+    <label for="name">App Name</label>
+    <input type="text" id="name" name="name" placeholder="Your app name here." required>
 
-  <!-- Input field for P12 password -->
-  <input type="password" id="p12Password" placeholder="P12 Password" />
-  <br />
+    <div>
+      <label for="p12" class="custom-file-upload">.P12 File</label>
+      <input type="file" id="p12" name="p12" accept=".p12" required>
+    </div>
 
-  <!-- Sign Files button -->
-  <button onclick="signFiles()">Sign Files</button>
+    <div>
+      <label for="mobileprovision" class="custom-file-upload">.MobileProvision File</label>
+      <input type="file" id="mobileprovision" name="mobileprovision" accept=".mobileprovision" required>
+    </div>
 
-  <!-- Display download link and install button -->
-  <a id="downloadLink" href="#" style="display: none;">Download Signed IPA</a>
-  <button id="installButton" style="display: none;">Install App</button>
+    <div>
+      <label for="ipa" class="custom-file-upload">.IPA File</label>
+      <input type="file" id="ipa" name="ipa" accept=".ipa" required>
+    </div>
 
-  <script src="signing.js"></script>
+    <label for="pass">Password of the certificate</label>
+    <input type="password" id="pass" name="pass" required>
+
+    <input type="submit" value="Upload" onclick="showLoading()">
+
+    <p class="error"></p>
+  </form>
+
+  <script>
+    function showLoading() {
+      document.getElementById("loadingIndicator").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
